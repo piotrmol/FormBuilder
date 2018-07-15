@@ -1,0 +1,19 @@
+<div *ngIf="items.length">
+  <div *ngFor="let item of items; let j = index" style="margin-left: 20px">
+    <select [name]="'condition' + parentIndex + j" ngModel (ngModelChange)="onModelChange($event, 'condition' + parentIndex + j)">
+      <option value="equal">Equal</option>
+      <option value="greater than">Greater than</option>
+      <option value="less than">Less than</option>
+    </select>
+    <input placeholder="equality" [name]="'equality' + parentIndex + j" ngModel (ngModelChange)="onModelChange($event, 'equality' + parentIndex + j)">
+    <input placeholder="Ask question" [name]="'question' + parentIndex + j" ngModel (ngModelChange)="onModelChange($event, 'question' + parentIndex + j)">
+    <select [name]="'type' + parentIndex + j" ngModel (ngModelChange)="onModelChange($event, 'type' + parentIndex + j)">
+      <option value="text">text</option>
+      <option value="yes/no">yes/no</option>
+      <option value="number">number</option>
+    </select>
+    <button type="button" (click)="addSubInput(parentIndex, j)">Add sub-input</button>
+    <button type="button" (click)="deleteSubIndex(parentIndex, j)">Delete</button>
+    <app-sub-forms *ngIf="item.subInput.length" [data]="item.subInput" [index]="parentIndex"></app-sub-forms>
+  </div>
+</div>

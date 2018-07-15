@@ -1,0 +1,14 @@
+<button (click)="addMainForm()">Add Input</button>
+<form #f>
+  <div *ngFor="let form of forms; let i = index">
+    <input placeholder="Ask question" [name]="'question' + i" ngModel (ngModelChange)="onModelChange($event, 'question' + i)">
+    <select [name]="'type'+ i" ngModel (ngModelChange)="onModelChange($event, 'type'+ i)">
+      <option value="text">text</option>
+      <option value="yes/no">yes/no</option>
+      <option value="number">number</option>
+    </select>
+    <button type="button" (click)="addSubform(i)">Add sub-input</button>
+    <button (click)="deleteMainForm(i)">Delete</button>
+    <app-sub-forms [data]="form['subInput']" [index]="i"></app-sub-forms>
+  </div>
+</form>
