@@ -1,6 +1,4 @@
 <h1>Form Builder</h1>
-<button (click)="addMainForm()" mat-button>Add Input</button>
-<button mat-button (click)="deleteAll()" style="margin-left: 16px">Delete All</button>
 <form #f>
   <div *ngFor="let form of forms; let i = index">
     <div class="main-form-wrapper">
@@ -18,6 +16,9 @@
       <button mat-button type="button" (click)="addSubform(form)">Add sub-input</button>
       <button mat-button (click)="deleteMainForm(i)" style="margin-left: 16px">Delete</button>
     </div>
-    <app-sub-forms [data]="form['subInput']" [index]="i"></app-sub-forms>
+    <app-sub-forms [data]="form['subInput']"></app-sub-forms>
   </div>
 </form>
+
+<button (click)="addMainForm()" mat-button>Add Input</button>
+<button mat-button (click)="deleteAll()" style="margin-left: 16px">Delete All</button>

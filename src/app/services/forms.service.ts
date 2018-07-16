@@ -41,7 +41,7 @@ export class FormsService {
       : (this.forms = []);
   }
 
-  addSubInput(target) {
+  addSubInput(target: any) {
     target.subInput.push({
       type: '',
       question: '',
@@ -53,7 +53,7 @@ export class FormsService {
     this.saveForm();
   }
 
-  deleteSubInput(target) {
+  deleteSubInput(target: any) {
     delete target.type;
     delete target.question;
     delete target.condition;
@@ -65,7 +65,7 @@ export class FormsService {
     this.saveForm();
   }
 
-  findEmptyObj(array) {
+  findEmptyObj(array: Array<any>) {
     array.forEach((el, index) => {
       if (Object.keys(el).length == 0) {
         array.splice(index, 1);
@@ -75,7 +75,7 @@ export class FormsService {
     });
   }
 
-  saveInputValue(target, key, value) {
+  saveInputValue(target: Object, key: string, value: string) {
     target[key] = value;
     this.saveForm();
   }

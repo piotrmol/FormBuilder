@@ -14,25 +14,23 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     this.formService.LoadSavedForm();
     this.forms = this.formService.getForm();
-    console.log(this.forms);
   }
 
   addMainForm(): void {
     this.formService.addMainForm();
   }
 
-  addSubform(target): void {
+  addSubform(target: Object): void {
     this.formService.addSubInput(target);
   }
 
   deleteMainForm(index: number): void {
     this.formService.deleteMainForm(index);
   }
-  onModelChanges(value, key, target) {
+  onModelChanges(value: string, key: string, target: Object): void {
     this.formService.saveInputValue(target, key, value);
   }
   deleteAll(): void {
     this.formService.deleteAll();
   }
-
 }

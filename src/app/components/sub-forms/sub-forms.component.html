@@ -24,8 +24,8 @@
         </mat-select>
       </mat-form-field>
       <button type="button" mat-button (click)="addSubInput(item)">Add sub-input</button>
-      <button type="button" mat-button (click)="deleteSubInput(item)">Delete</button>
+      <button type="button" mat-button (click)="deleteSubInput(item)" style="margin-left: 16px">Delete</button>
     </div>
-    <app-sub-forms *ngIf="item.subInput.length" [data]="item.subInput" [index]="parentIndex"></app-sub-forms>
+    <app-sub-forms *ngIf="item.subInput.length" [data]="item.subInput"></app-sub-forms>
   </div>
 </div>
