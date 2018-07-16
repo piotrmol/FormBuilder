@@ -5,17 +5,17 @@
   <div *ngFor="let form of forms; let i = index">
     <div class="main-form-wrapper">
       <mat-form-field>
-        <input matInput placeholder="Ask question" [name]="'question' + i" ngModel (ngModelChange)="onModelChange($event, 'question' + i)">
+        <input matInput placeholder="Ask question" name="question" [ngModel]="form.question" (ngModelChange)="onModelChanges($event, 'question', form)">
       </mat-form-field>
       <mat-form-field>
-        <mat-select [name]="'type'+ i" ngModel (ngModelChange)="onModelChange($event, 'type'+ i)" placeholder="Chose form type">
+        <mat-select name="type" [ngModel]="form.type" (ngModelChange)="onModelChanges($event, 'type', form)" placeholder="Chose form type">
           <mat-option value="text">text</mat-option>
           <mat-option value="yes/no">yes/no</mat-option>
           <mat-option value="number">number</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <button mat-button type="button" (click)="addSubform(i)">Add sub-input</button>
+      <button mat-button type="button" (click)="addSubform(form)">Add sub-input</button>
       <button mat-button (click)="deleteMainForm(i)" style="margin-left: 16px">Delete</button>
     </div>
     <app-sub-forms [data]="form['subInput']" [index]="i"></app-sub-forms>

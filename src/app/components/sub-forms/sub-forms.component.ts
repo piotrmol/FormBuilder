@@ -12,35 +12,46 @@ export class SubFormsComponent {
 
   constructor(private formService: FormsService) {}
 
-  addSubInput(parentIndex: any, currentIndex: number): void {
-    const wholeIndex = `${parentIndex}${currentIndex}`;
-    this.parentIndex = wholeIndex;
-    this.formService.addSubFormByMultipleIndex(wholeIndex);
+  // addSubInput(parentIndex: any, currentIndex: number): void {
+  //   const wholeIndex = `${parentIndex}${currentIndex}`;
+  //   this.parentIndex = wholeIndex;
+  //   this.formService.addSubFormByMultipleIndex(wholeIndex);
+  // }
+
+  // deleteSubIndex(parentIndex: any, currentIndex: number): void {
+  //   const wholeIndex = `${parentIndex}${currentIndex}`;
+  //   //this.parentIndex = wholeIndex;
+  //   this.formService.deleteSubForm(wholeIndex);
+  // }
+
+  // //Updates forms values
+  // onModelChange(event: string, target: string): void {
+  //   if (target.includes('question')) {
+  //     const index = target.substr(8);
+  //     this.formService.updateSubForm('question', index, event);
+  //   }
+  //   if (target.includes('type')) {
+  //     const index = target.substr(4);
+  //     this.formService.updateSubForm('type', index, event);
+  //   }
+  //   if (target.includes('equality')) {
+  //     const index = target.substr(8);
+  //     this.formService.updateSubForm('equality', index, event);
+  //   }
+  //   if (target.includes('condition')) {
+  //     const index = target.substr(9);
+  //     this.formService.updateSubForm('condition', index, event);
+  //   }
+  // }
+
+  addSubInput(target) {
+    this.formService.addSubInput(target);
   }
 
-  deleteSubIndex(parentIndex: any, currentIndex: number): void {
-    const wholeIndex = `${parentIndex}${currentIndex}`;
-    this.parentIndex = wholeIndex;
-    this.formService.deleteSubForm(wholeIndex);
+  deleteSubInput(target) {
+    this.formService.deleteSubInput(target);
   }
-
-  //Updates forms values
-  onModelChange(event: string, target: string): void {
-    if (target.includes('question')) {
-      const index = target.substr(8);
-      this.formService.updateSubForm('question', index, event);
-    }
-    if (target.includes('type')) {
-      const index = target.substr(4);
-      this.formService.updateSubForm('type', index, event);
-    }
-    if (target.includes('equality')) {
-      const index = target.substr(8);
-      this.formService.updateSubForm('equality', index, event);
-    }
-    if (target.includes('condition')) {
-      const index = target.substr(9);
-      this.formService.updateSubForm('condition', index, event);
-    }
+  onModelChanges(value, key, target) {
+    this.formService.saveInputValue(target, key, value);
   }
 }

@@ -14,45 +14,25 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     this.formService.LoadSavedForm();
     this.forms = this.formService.getForm();
+    console.log(this.forms);
   }
 
   addMainForm(): void {
-    this.formService.addMainForm({
-      type: '',
-      question: '',
-      userAnswer: '',
-      subInput: []
-    });
+    this.formService.addMainForm();
   }
 
-  addSubform(index: number): void {
-    this.formService.addSubForm(index, {
-      type: '',
-      question: '',
-      condition: '',
-      answer: '',
-      userAnswer: '',
-      subInput: []
-    });
+  addSubform(target): void {
+    this.formService.addSubInput(target);
   }
 
   deleteMainForm(index: number): void {
     this.formService.deleteMainForm(index);
   }
-
-  // Update main forms
-  onModelChange(event: string, target: string): void {
-    if (target.includes('question')) {
-      const index = target.substr(8);
-      this.formService.updateMainForm('question', index, event);
-    }
-    if (target.includes('type')) {
-      const index = target.substr(4);
-      this.formService.updateMainForm('type', index, event);
-    }
+  onModelChanges(value, key, target) {
+    this.formService.saveInputValue(target, key, value);
   }
-
   deleteAll(): void {
     this.formService.deleteAll();
   }
+
 }
