@@ -6,34 +6,26 @@ import { FormsService } from '../../services/forms.service';
   templateUrl: './sub-forms.component.html',
   styleUrls: ['./sub-forms.component.scss']
 })
-export class SubFormsComponent implements OnInit {
+export class SubFormsComponent {
   @Input('data') items;
   @Input('index') parentIndex;
-  lastIndex = null;
-  // @Input() currentIndex;
-  // wholeIndex: string;
-  // @Input('key') key;
+
   constructor(private formService: FormsService) {}
 
-  ngOnInit() {
-    // this.wholeIndex = `${this.parentIndex}${this.currentIndex}`;
-    // console.log(this.wholeIndex);
-    console.log(this.parentIndex);
-  }
-
-  addSubInput(parentIndex, currentIndex) {
+  addSubInput(parentIndex: any, currentIndex: number): void {
     const wholeIndex = `${parentIndex}${currentIndex}`;
     this.parentIndex = wholeIndex;
     this.formService.addSubFormByMultipleIndex(wholeIndex);
   }
 
-  deleteSubIndex(parentIndex, currentIndex) {
+  deleteSubIndex(parentIndex: any, currentIndex: number): void {
     const wholeIndex = `${parentIndex}${currentIndex}`;
     this.parentIndex = wholeIndex;
     this.formService.deleteSubForm(wholeIndex);
   }
 
-  onModelChange(event, target) {
+  //Updates forms values
+  onModelChange(event: string, target: string): void {
     if (target.includes('question')) {
       const index = target.substr(8);
       this.formService.updateSubForm('question', index, event);

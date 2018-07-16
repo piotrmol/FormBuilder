@@ -14,10 +14,9 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     this.formService.LoadSavedForm();
     this.forms = this.formService.getForm();
-    //this.test = this.formService.getTest();
   }
 
-  addMainForm() {
+  addMainForm(): void {
     this.formService.addMainForm({
       type: '',
       question: '',
@@ -26,7 +25,7 @@ export class FormComponent implements OnInit {
     });
   }
 
-  addSubform(index) {
+  addSubform(index: number): void {
     this.formService.addSubForm(index, {
       type: '',
       question: '',
@@ -37,11 +36,12 @@ export class FormComponent implements OnInit {
     });
   }
 
-  deleteMainForm(index) {
+  deleteMainForm(index: number): void {
     this.formService.deleteMainForm(index);
   }
 
-  onModelChange(event, target) {
+  // Update main forms
+  onModelChange(event: string, target: string): void {
     if (target.includes('question')) {
       const index = target.substr(8);
       this.formService.updateMainForm('question', index, event);
@@ -52,10 +52,7 @@ export class FormComponent implements OnInit {
     }
   }
 
-  deleteAll() {
+  deleteAll(): void {
     this.formService.deleteAll();
   }
-  // setTarget(event) {
-  //   this.target = event.target;
-  // }
 }

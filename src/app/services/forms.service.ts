@@ -8,26 +8,27 @@ export class FormsService {
   forms: Array<any> = [];
   constructor() {}
 
-  addMainForm(mainForm): void {
+  addMainForm(mainForm: Object): void {
     this.forms.push(mainForm);
     this.saveForm();
     console.log(this.forms);
   }
-  deleteMainForm(index): void {
+  deleteMainForm(index: any): void {
     this.forms.splice(index, 1);
     this.saveForm();
   }
   getForm(): Array<Object> {
     return this.forms;
   }
+
   // Add sub form on first level of nesting
-  addSubForm(index, subForm) {
+  addSubForm(index: any, subForm: Object) {
     this.forms[index][`subInput`].push(subForm);
     this.saveForm();
     console.log(this.forms);
   }
 
-  addSubFormByMultipleIndex(index) {
+  addSubFormByMultipleIndex(index: any): void {
     console.log(index);
     let arrayOfIndexes = index.split('');
     const target = this.forms[arrayOfIndexes[0]].subInput;
@@ -38,7 +39,7 @@ export class FormsService {
     this.addNestedSubForm(target, arrayOfIndexes);
   }
 
-  addNestedSubForm(target, indexes) {
+  addNestedSubForm(target: Object, indexes: any): void {
     let currentTarget;
     if (indexes.length > 1) {
       indexes = indexes.split('');
@@ -65,7 +66,7 @@ export class FormsService {
     }
   }
 
-  deleteSubForm(indexes) {
+  deleteSubForm(indexes: any): void {
     let arrayOfIndexes = indexes.split('');
     const indexToRemove = arrayOfIndexes[arrayOfIndexes.length - 1];
     arrayOfIndexes.pop();
@@ -82,7 +83,11 @@ export class FormsService {
     }
   }
 
-  removeSubFormFromArray(target, indexes, indexToRemove) {
+  removeSubFormFromArray(
+    target: Object,
+    indexes: any,
+    indexToRemove: number
+  ): void {
     let currentTarget;
     if (indexes.length > 1) {
       indexes = indexes.split('');
@@ -102,7 +107,7 @@ export class FormsService {
     }
   }
 
-  updateMainForm(target, index, value) {
+  updateMainForm(target: Object, index: any, value: string): void {
     if (target === 'question') {
       this.forms[index].question = value;
       this.saveForm();
@@ -114,7 +119,7 @@ export class FormsService {
     console.log(this.forms);
   }
 
-  updateSubForm(target, index, value) {
+  updateSubForm(target: string, index: any, value: string): void {
     const indexes = index.split('');
     let currentTarget = this.forms[indexes[0]].subInput;
     indexes.shift();
@@ -125,7 +130,7 @@ export class FormsService {
     }
   }
 
-  findSubForm(indexes, target, key, value) {
+  findSubForm(indexes: any, target: Object, key: string, value: string): void {
     const currentTarget = target[indexes[0]];
     indexes.shift();
     if (indexes.length === 0) {
@@ -137,18 +142,17 @@ export class FormsService {
     }
   }
 
-  deleteAll() {
+  deleteAll(): void {
     this.forms.splice(0);
   }
 
-  saveForm() {
+  saveForm(): void {
     let formToSave: any = this.forms;
     formToSave = JSON.stringify(this.forms);
-    //localStorage.save('form', formToSave);
     localStorage.setItem('form', formToSave);
   }
 
-  LoadSavedForm() {
+  LoadSavedForm(): void {
     this.forms = JSON.parse(localStorage.getItem('form'));
   }
 }
