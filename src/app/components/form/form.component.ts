@@ -12,6 +12,7 @@ export class FormComponent implements OnInit {
   constructor(private formService: FormsService) {}
 
   ngOnInit(): void {
+    this.formService.LoadSavedForm();
     this.forms = this.formService.getForm();
     //this.test = this.formService.getTest();
   }
@@ -20,6 +21,7 @@ export class FormComponent implements OnInit {
     this.formService.addMainForm({
       type: '',
       question: '',
+      userAnswer: '',
       subInput: []
     });
   }
@@ -30,6 +32,7 @@ export class FormComponent implements OnInit {
       question: '',
       condition: '',
       answer: '',
+      userAnswer: '',
       subInput: []
     });
   }
@@ -49,6 +52,9 @@ export class FormComponent implements OnInit {
     }
   }
 
+  deleteAll() {
+    this.formService.deleteAll();
+  }
   // setTarget(event) {
   //   this.target = event.target;
   // }

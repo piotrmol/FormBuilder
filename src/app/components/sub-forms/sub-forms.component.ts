@@ -9,11 +9,17 @@ import { FormsService } from '../../services/forms.service';
 export class SubFormsComponent implements OnInit {
   @Input('data') items;
   @Input('index') parentIndex;
-  //@Input('currentIndex') currentIndex;
+  lastIndex = null;
+  // @Input() currentIndex;
+  // wholeIndex: string;
   // @Input('key') key;
   constructor(private formService: FormsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.wholeIndex = `${this.parentIndex}${this.currentIndex}`;
+    // console.log(this.wholeIndex);
+    console.log(this.parentIndex);
+  }
 
   addSubInput(parentIndex, currentIndex) {
     const wholeIndex = `${parentIndex}${currentIndex}`;
@@ -23,6 +29,7 @@ export class SubFormsComponent implements OnInit {
 
   deleteSubIndex(parentIndex, currentIndex) {
     const wholeIndex = `${parentIndex}${currentIndex}`;
+    this.parentIndex = wholeIndex;
     this.formService.deleteSubForm(wholeIndex);
   }
 

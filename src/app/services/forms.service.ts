@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { stringify } from '../../../node_modules/@angular/core/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +10,20 @@ export class FormsService {
 
   addMainForm(mainForm): void {
     this.forms.push(mainForm);
+    this.saveForm();
     console.log(this.forms);
   }
   deleteMainForm(index): void {
     this.forms.splice(index, 1);
+    this.saveForm();
   }
   getForm(): Array<Object> {
     return this.forms;
   }
-
+  // Add sub form on first level of nesting
   addSubForm(index, subForm) {
     this.forms[index][`subInput`].push(subForm);
+    this.saveForm();
     console.log(this.forms);
   }
 
@@ -53,9 +57,11 @@ export class FormsService {
         question: '',
         condition: '',
         answer: '',
+        userAnswer: '',
         subInput: []
       });
       console.log(this.forms);
+      this.saveForm();
     }
   }
 
@@ -91,6 +97,7 @@ export class FormsService {
       this.removeSubFormFromArray(currentTarget, indexes, indexToRemove);
     } else {
       currentTarget.splice(indexToRemove, 1);
+      this.saveForm();
       console.log(this.forms);
     }
   }
@@ -98,9 +105,11 @@ export class FormsService {
   updateMainForm(target, index, value) {
     if (target === 'question') {
       this.forms[index].question = value;
+      this.saveForm();
     }
     if (target === 'type') {
       this.forms[index].type = value;
+      this.saveForm();
     }
     console.log(this.forms);
   }
@@ -121,9 +130,25 @@ export class FormsService {
     indexes.shift();
     if (indexes.length === 0) {
       currentTarget[key] = value;
+      this.saveForm();
       console.log(this.forms);
     } else {
       this.findSubForm(indexes, currentTarget.subInput, key, value);
     }
+  }
+
+  deleteAll() {
+    this.forms.splice(0);
+  }
+
+  saveForm() {
+    let formToSave: any = this.forms;
+    formToSave = JSON.stringify(this.forms);
+    //localStorage.save('form', formToSave);
+    localStorage.setItem('form', formToSave);
+  }
+
+  LoadSavedForm() {
+    this.forms = JSON.parse(localStorage.getItem('form'));
   }
 }
