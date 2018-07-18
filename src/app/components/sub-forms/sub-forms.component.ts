@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsService } from '../../services/forms.service';
 import { FormModel } from '../../models/form.model';
 
