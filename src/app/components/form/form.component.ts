@@ -1,3 +1,4 @@
+import { FormModel } from './../../models/form.model';
 import { FormsService } from './../../services/forms.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  forms: Array<Object>;
+  forms: Array<FormModel>;
   target;
   constructor(private formService: FormsService) {}
 
   ngOnInit(): void {
-    this.formService.LoadSavedForm();
+    this.formService.loadSavedForm();
     this.forms = this.formService.getForm();
   }
 
@@ -20,14 +21,14 @@ export class FormComponent implements OnInit {
     this.formService.addMainForm();
   }
 
-  addSubform(target: Object): void {
+  addSubform(target: FormModel): void {
     this.formService.addSubInput(target);
   }
 
   deleteMainForm(index: number): void {
     this.formService.deleteMainForm(index);
   }
-  onModelChanges(value: string, key: string, target: Object): void {
+  onModelChanges(value: string, key: string, target: FormModel): void {
     this.formService.saveInputValue(target, key, value);
   }
   deleteAll(): void {

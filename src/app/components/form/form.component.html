@@ -3,22 +3,20 @@
   <div *ngFor="let form of forms; let i = index">
     <div class="main-form-wrapper">
       <mat-form-field>
-        <input matInput placeholder="Ask question" name="question" [ngModel]="form.question" (ngModelChange)="onModelChanges($event, 'question', form)">
+        <input matInput placeholder="Ask question" [name]="'question' + form.id" [ngModel]="form.question" (ngModelChange)="onModelChanges($event, 'question', form)">
       </mat-form-field>
       <mat-form-field>
-        <mat-select name="type" [ngModel]="form.type" (ngModelChange)="onModelChanges($event, 'type', form)" placeholder="Chose form type">
+        <mat-select [name]="'type' + form.id" [ngModel]="form.type" (ngModelChange)="onModelChanges($event, 'type', form)" placeholder="Chose form type">
           <mat-option value="text">text</mat-option>
           <mat-option value="yes/no">yes/no</mat-option>
           <mat-option value="number">number</mat-option>
         </mat-select>
       </mat-form-field>
-
       <button mat-button type="button" (click)="addSubform(form)">Add sub-input</button>
-      <button mat-button (click)="deleteMainForm(i)" style="margin-left: 16px">Delete</button>
+      <button mat-button (click)="deleteMainForm(i)" class="btn-right">Delete</button>
     </div>
-    <app-sub-forms [data]="form['subInput']"></app-sub-forms>
+    <app-sub-forms [items]="form['subInput']" [parentFormType]="form.type"></app-sub-forms>
   </div>
 </form>
-
-<button (click)="addMainForm()" mat-button styles="margin-top: 24px">Add Input</button>
-<button mat-button (click)="deleteAll()" style="margin-left: 16px; margin-top: 24px">Delete All</button>
+<button (click)="addMainForm()" mat-button class="btn-right">Add Input</button>
+<button mat-button (click)="deleteAll()" class="btns-main btn-right">Delete All</button>

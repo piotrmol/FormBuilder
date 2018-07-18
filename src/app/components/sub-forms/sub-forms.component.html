@@ -1,31 +1,39 @@
 <div *ngIf="items.length">
-
-  <div *ngFor="let item of items; let j = index" style="margin-left: 20px">
+  <div *ngFor="let item of items; let j = index">
     <div class="sub-form-wrapper">
+      <div class="inline-inputs">
+        <mat-form-field>
+          <mat-select [name]="'condition' + item.id" [ngModel]="item.condition" (ngModelChange)="onModelChanges($event, 'condition', item)"
+            placeholder="Chose equality type">
+            <mat-option value="equal">Equal</mat-option>
+            <mat-option value="greater than" *ngIf="parentFormType === 'number'">Greater than</mat-option>
+            <mat-option value="less than" *ngIf="parentFormType === 'number'">Less than</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="second-input" *ngIf="parentFormType === 'text' || parentFormType === 'number'">
+          <input matInput placeholder="Expected answer" [name]="'answer' + item.id" [ngModel]="item.answer" (ngModelChange)="onModelChanges($event, 'answer', item)"
+            [value]="item.answer">
+        </mat-form-field>
+        <mat-form-field class="second-input" *ngIf="parentFormType === 'yes/no'">
+          <mat-select placeholder="Expected answer" [name]="'answer' + item.id" [ngModel]="item.answer" (ngModelChange)="onModelChanges($event, 'answer', item)">
+            <mat-option value="yes">yes</mat-option>
+            <mat-option value="no">no</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
       <mat-form-field>
-        <mat-select name="condition" [ngModel]="item.condition" (ngModelChange)="onModelChanges($event, 'condition', item)" placeholder="Chose equality type">
-          <mat-option value="equal">Equal</mat-option>
-          <mat-option value="greater than">Greater than</mat-option>
-          <mat-option value="less than">Less than</mat-option>
-        </mat-select>
+        <input matInput placeholder="Ask question" [name]="'question' + item.id" [ngModel]="item.question" (ngModelChange)="onModelChanges($event, 'question', item)">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Expected answer" name="answer" [ngModel]="item.answer" (ngModelChange)="onModelChanges($event, 'answer', item)"
-          [value]="item.question">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Ask question" name="question" [ngModel]="item.question" (ngModelChange)="onModelChanges($event, 'question', item)">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-select name="type" [ngModel]="item.type" (ngModelChange)="onModelChanges($event, 'type', item)" placeholder="Chose form type">
+        <mat-select [name]="'type' + item.id" [ngModel]="item.type" (ngModelChange)="onModelChanges($event, 'type', item)" placeholder="Chose form type">
           <mat-option value="text">text</mat-option>
           <mat-option value="yes/no">yes/no</mat-option>
           <mat-option value="number">number</mat-option>
         </mat-select>
       </mat-form-field>
       <button type="button" mat-button (click)="addSubInput(item)">Add sub-input</button>
-      <button type="button" mat-button (click)="deleteSubInput(item)" style="margin-left: 16px">Delete</button>
+      <button type="button" mat-button (click)="deleteSubInput(item)" class="btn-right">Delete</button>
     </div>
-    <app-sub-forms *ngIf="item.subInput.length" [data]="item.subInput"></app-sub-forms>
+    <app-sub-forms *ngIf="item.subInput.length" [items]="item.subInput" [parentFormType]="item.type"></app-sub-forms>
   </div>
 </div>

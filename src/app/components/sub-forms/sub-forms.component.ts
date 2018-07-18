@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormsService } from '../../services/forms.service';
+import { FormModel } from '../../models/form.model';
 
 @Component({
   selector: 'app-sub-forms',
@@ -7,19 +8,19 @@ import { FormsService } from '../../services/forms.service';
   styleUrls: ['./sub-forms.component.scss']
 })
 export class SubFormsComponent {
-  @Input('data') items;
-  //@Input('index') parentIndex;
+  @Input() items: Array<FormModel>;
+  @Input() parentFormType: string;
 
   constructor(private formService: FormsService) {}
 
-  addSubInput(target: Object): void {
+  addSubInput(target: FormModel): void {
     this.formService.addSubInput(target);
   }
 
-  deleteSubInput(target: Object): void {
+  deleteSubInput(target: FormModel): void {
     this.formService.deleteSubInput(target);
   }
-  onModelChanges(value: string, key: string, target: Object): void {
+  onModelChanges(value: string, key: string, target: FormModel): void {
     this.formService.saveInputValue(target, key, value);
   }
 }

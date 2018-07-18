@@ -7,7 +7,6 @@ import { FormComponent } from './components/form/form.component';
 import { SubFormsComponent } from './components/sub-forms/sub-forms.component';
 import { FormsService } from './services/forms.service';
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
