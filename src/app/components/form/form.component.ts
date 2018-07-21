@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormComponent implements OnInit {
   forms: Array<FormModel>;
-  target;
+  target: FormModel;
   constructor(private formService: FormsService) {}
 
   ngOnInit(): void {

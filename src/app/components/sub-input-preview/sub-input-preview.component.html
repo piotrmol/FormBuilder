@@ -1,0 +1,24 @@
+<div *ngFor="let item of items" class="align-right">
+  <div *ngIf="validate(parent, item)">
+    <div *ngIf="item.type === 'number' || item.type === 'text'" class="sub-form">
+      <mat-form-field>
+        <input matInput [name]="'question' + item.id" [ngModel]="item.question" readonly placeholder="Question">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [name]="'userAnswer' + item.id" [ngModel]="item.userAnswer" (ngModelChange)="onModelChange($event, 'userAnswer', item)"
+          placeholder="Type Your answer">
+      </mat-form-field>
+    </div>
+    <div *ngIf="item.type === 'yes/no'" class="sub-form-radio">
+      <mat-form-field>
+        <input matInput [name]="'question' + item.id" [ngModel]="item.question" readonly placeholder="Question">
+      </mat-form-field>
+      <mat-radio-group [name]="'userAnswer' + item.id" [ngModel]="item.userAnswer" readonly (ngModelChange)="onModelChange($event, 'userAnswer', item)"
+        placeholder="Chose Your answer">
+        <mat-radio-button value="yes">Yes</mat-radio-button>
+        <mat-radio-button value="no">No</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <app-sub-input-preview [items]="item.subInput" [parent]="item"></app-sub-input-preview>
+  </div>
+</div>

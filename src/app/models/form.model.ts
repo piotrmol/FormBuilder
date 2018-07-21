@@ -5,5 +5,5 @@ export interface FormModel {
   id: string;
   subInput: Array<FormModel>;
   condition?: string;
-  answer?: string;
+  expectedAnswer?: string;
 }

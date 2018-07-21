@@ -12,9 +12,21 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
+import { PreviewComponent } from './components/preview/preview.component';
+import { ExportFormComponent } from './components/export-form/export-form.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { SubInputPreviewComponent } from './components/sub-input-preview/sub-input-preview.component';
 
 @NgModule({
-  declarations: [AppComponent, FormComponent, SubFormsComponent],
+  declarations: [
+    AppComponent,
+    FormComponent,
+    SubFormsComponent,
+    PreviewComponent,
+    ExportFormComponent,
+    SubInputPreviewComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,7 +35,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule,
+    MatRadioModule
   ],
   providers: [FormsService],
   bootstrap: [AppComponent]

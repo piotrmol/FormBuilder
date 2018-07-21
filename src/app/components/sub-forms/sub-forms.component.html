@@ -6,16 +6,16 @@
           <mat-select [name]="'condition' + item.id" [ngModel]="item.condition" (ngModelChange)="onModelChanges($event, 'condition', item)"
             placeholder="Chose equality type">
             <mat-option value="equal">Equal</mat-option>
-            <mat-option value="greater than" *ngIf="parentFormType === 'number'">Greater than</mat-option>
-            <mat-option value="less than" *ngIf="parentFormType === 'number'">Less than</mat-option>
+            <mat-option value="greater" *ngIf="parentFormType === 'number'">Greater than</mat-option>
+            <mat-option value="less" *ngIf="parentFormType === 'number'">Less than</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="second-input" *ngIf="parentFormType === 'text' || parentFormType === 'number'">
-          <input matInput placeholder="Expected answer" [name]="'answer' + item.id" [ngModel]="item.answer" (ngModelChange)="onModelChanges($event, 'answer', item)"
-            [value]="item.answer">
+          <input matInput placeholder="Expected answer" [name]="'expectedAnswer' + item.id" [ngModel]="item.expectedAnswer" (ngModelChange)="onModelChanges($event, 'expectedAnswer', item)"
+            [value]="item.expectedAnswer">
         </mat-form-field>
         <mat-form-field class="second-input" *ngIf="parentFormType === 'yes/no'">
-          <mat-select placeholder="Expected answer" [name]="'answer' + item.id" [ngModel]="item.answer" (ngModelChange)="onModelChanges($event, 'answer', item)">
+          <mat-select placeholder="Expected answer" [name]="'expectedAnswer' + item.id" [ngModel]="item.expectedAnswer" (ngModelChange)="onModelChanges($event, 'expectedAnswer', item)">
             <mat-option value="yes">yes</mat-option>
             <mat-option value="no">no</mat-option>
           </mat-select>

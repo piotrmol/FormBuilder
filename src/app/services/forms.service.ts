@@ -47,7 +47,7 @@ export class FormsService {
       type: '',
       question: '',
       condition: '',
-      answer: '',
+      expectedAnswer: '',
       userAnswer: '',
       id: this.getUniqueId(),
       subInput: []
@@ -59,7 +59,7 @@ export class FormsService {
     delete target.type;
     delete target.question;
     delete target.condition;
-    delete target.answer;
+    delete target.expectedAnswer;
     delete target.userAnswer;
     delete target.subInput;
     delete target.id;
