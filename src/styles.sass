@@ -1,15 +1,21 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css"
-
-.mat-form-field
-  display: block !important
-  width: 100%
-  max-width: 500px
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css"
+@import "./assets/sass/_variables.sass"
 
 body
-  background-color: #dbdbdb
+  background-color: #edd8ff
+  color: $left-1
+
+.form-wrapper
+  width: 100%
+  max-width: 500px
+  background-color: white
+  padding: 20px
+  -webkit-box-shadow: 4px 6px 12px 1px rgba(31,18,55,0.75)
+  -moz-box-shadow: 4px 6px 12px 1px rgba(31,18,55,0.75)
+  box-shadow: 4px 6px 12px 1px rgba(31,18,55,0.75)
 
 button
-  background-color: #353535 !important
+  background-color: $left-1 !important
   color: white !important
 
 .btn-right
@@ -17,6 +23,26 @@ button
 
 .btns-main
   margin-top: 24px !important
+
+// Chenge angular material styles
+.mat-form-field
+  display: block !important
+  width: 100%
+  max-width: 500px
+
+.mat-tab-label.mat-tab-label-active
+  color: $left-1
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle
+  border-color: $left-1
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle
+  background-color: $left-1
+
+
+
+
+
 
 
 

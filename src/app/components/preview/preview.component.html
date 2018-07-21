@@ -1,6 +1,6 @@
 <form #f>
   <div *ngFor="let question of forms">
-    <div *ngIf="(question.question) && (question.type === 'number' || question.type === 'text')" class="main-form">
+    <div *ngIf="(question.question) && (question.type === 'number' || question.type === 'text')" class="main-form form-wrapper">
       <mat-form-field>
         <input matInput [name]="'question' + question.id" [ngModel]="question.question" readonly placeholder="Question">
       </mat-form-field>
@@ -9,14 +9,14 @@
           placeholder="Type Your answer">
       </mat-form-field>
     </div>
-    <div *ngIf="question.question && question.type === 'yes/no'" class="main-form-radio">
+    <div *ngIf="question.question && question.type === 'yes/no'" class="main-form-radio form-wrapper">
       <mat-form-field>
         <input matInput [name]="'question' + question.id" [ngModel]="question.question" readonly placeholder="Question">
       </mat-form-field>
       <mat-radio-group [name]="'userAnswer' + question.id" [ngModel]="question.userAnswer" (ngModelChange)="onModelChange($event, 'userAnswer', question)"
         placeholder="Chose Your answer">
         <mat-radio-button value="yes">Yes</mat-radio-button>
-        <mat-radio-button value="no">No</mat-radio-button>
+        <mat-radio-button value="no" class="btn-right">No</mat-radio-button>
       </mat-radio-group>
     </div>
     <app-sub-input-preview [items]="question.subInput" [parent]="question"></app-sub-input-preview>

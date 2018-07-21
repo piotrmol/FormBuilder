@@ -1,6 +1,6 @@
 <div *ngIf="items.length">
   <div *ngFor="let item of items" class="remove-left">
-    <div class="sub-form-wrapper">
+    <div class="sub-form-wrapper form-wrapper">
       <div class="inline-inputs">
         <mat-form-field>
           <mat-select [name]="'condition' + item.id" [ngModel]="item.condition" (ngModelChange)="onModelChanges($event, 'condition', item)"

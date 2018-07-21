@@ -1,7 +1,6 @@
-<h1>Form Builder</h1>
 <form #f>
   <div *ngFor="let form of forms; let i = index">
-    <div class="main-form-wrapper">
+    <div class="main-form-wrapper form-wrapper">
       <mat-form-field>
         <input matInput placeholder="Ask question" [name]="'question' + form.id" [ngModel]="form.question" (ngModelChange)="onModelChanges($event, 'question', form)">
       </mat-form-field>
@@ -18,5 +17,7 @@
     <app-sub-forms [items]="form['subInput']" [parentFormType]="form.type"></app-sub-forms>
   </div>
 </form>
-<button (click)="addMainForm()" mat-button class="btn-right">Add Input</button>
-<button mat-button (click)="deleteAll()" class="btns-main btn-right">Delete All</button>
+<div class="btns">
+  <button (click)="addMainForm()" mat-button>Add Input</button>
+  <button mat-button (click)="deleteAll()" class="btns-main btn-right">Delete All</button>
+</div>

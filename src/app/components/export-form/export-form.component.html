@@ -1,3 +1,5 @@
-<p>
-  export-form works!
-</p>
+<mat-form-field class="form-wrapper">
+  <mat-label>Built form JSON</mat-label>
+  <textarea matInput readonly cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="50"
+    name="form" [ngModel]="form"></textarea>
+</mat-form-field>

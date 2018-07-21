@@ -6,10 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./export-form.component.scss']
 })
 export class ExportFormComponent implements OnInit {
-
-  constructor() { }
+  form: string;
 
   ngOnInit() {
+    this.form = localStorage.getItem('form');
   }
-
 }
