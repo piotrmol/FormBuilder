@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ExportFormComponent implements OnInit {
   form: string;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = localStorage.getItem('form');
   }
 }

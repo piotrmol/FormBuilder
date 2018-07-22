@@ -9,11 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class PreviewComponent implements OnInit {
   forms: Array<FormModel>;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.forms = JSON.parse(localStorage.getItem('form'));
   }
 
-  onModelChange(value: string, key: string, target: FormModel) {
+  onModelChange(value: string, key: string, target: FormModel): void {
     target[key] = value;
   }
 }

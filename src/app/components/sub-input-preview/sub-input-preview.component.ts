@@ -10,7 +10,7 @@ export class SubInputPreviewComponent {
   @Input() items: Array<FormModel>;
   @Input() parent: FormModel;
 
-  onModelChange(value: string, key: string, target: FormModel) {
+  onModelChange(value: string, key: string, target: FormModel): void {
     target[key] = value;
   }
 
