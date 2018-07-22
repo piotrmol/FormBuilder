@@ -29,6 +29,7 @@ export class FormsService {
 
   deleteAll(): void {
     this.forms.splice(0);
+    this.saveForm();
   }
 
   saveForm(): void {
